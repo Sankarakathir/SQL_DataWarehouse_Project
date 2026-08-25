@@ -1,4 +1,7 @@
+/*
+===============================================================================================================================
 🥉 Bronze Layer — Table Creation & DDL
+===============================================================================================================================
 📌 Overview
 
 - This SQL script defines the physical table structure of the Bronze Layer of the Data Warehouse.
@@ -15,7 +18,6 @@ Define column names and data types.
 Separate CRM and ERP source data.
 Allow the table structure to be recreated consistently.
 Prepare the database for the subsequent BULK INSERT process.
-  
 ===============================================================================================================================
 Note:
 The script does not clean or transform the source data.
@@ -23,7 +25,7 @@ The Bronze layer intentionally preserves the source data as closely as possible 
 ===============================================================================================================================
   
 🏗️ Bronze Layer Architecture
-
+-----------------------------
 The Bronze layer receives data from two source systems:
 
                          SOURCE SYSTEMS
@@ -40,8 +42,9 @@ The Bronze layer receives data from two source systems:
                               │
                               ▼
                        BRONZE SCHEMA    
-
-
+===============================================================================================================================
+*/
+Script:
   
 IF OBJECT_ID('bronze.crm_cust_info', 'U') IS NOT NULL
     DROP TABLE bronze.crm_cust_info;
