@@ -63,7 +63,6 @@ Scripts :
 -- =============================================================
 -- GOLD LAYER : CUSTOMER TABLE
 -- CRM + ERP CUSTOMER + ERP LOCATION
--- =============================================================
 CREATE VIEW gold.dim_customer AS
 SELECT
     ROW_NUMBER() OVER (ORDER BY ci.cst_id) AS customer_key,
@@ -85,11 +84,9 @@ LEFT JOIN silver.erp_cust_az12 ca
     ON ci.cst_key = ca.cid
 LEFT JOIN silver.erp_loc_a101 lc
     ON ci.cst_key = lc.cid;
-
 -- =============================================================
 -- GOLD LAYER : PRODUCT TABLE
 -- CRM PRODUCT + ERP CATEGORY
--- =============================================================
 CREATE VIEW gold.dim_product AS
 SELECT
     ROW_NUMBER() OVER (ORDER BY pr.prd_start_dt, pr.prd_key) AS product_key,
@@ -107,10 +104,8 @@ FROM silver.crm_prd_info pr
 LEFT JOIN silver.erp_px_cat_g1v2 ca
     ON pr.cat_key = ca.id
 WHERE pr.prd_end_dt IS NULL;
-
 -- =============================================================
 -- GOLD LAYER : SALES TABLE
--- =============================================================
 CREATE VIEW gold.fact_sales AS
 SELECT
     sd.sls_order_num AS order_number,
